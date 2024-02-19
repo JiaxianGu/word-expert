@@ -1,3 +1,6 @@
+word-expert/.env
+word-expert/node_modules
+
 # Logs
 logs
 *.log
