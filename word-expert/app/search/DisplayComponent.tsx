@@ -1,8 +1,12 @@
 import React from 'react'
 
-const DisplayComponent = () => {
+interface DisplayComponentProps {
+  data: any[];
+}
+
+const DisplayComponent: React.FC<DisplayComponentProps> = ({ data }) => {
   return (
-    <div>displayComponent</div>
+    <div>{data}</div>
   )
 }
 

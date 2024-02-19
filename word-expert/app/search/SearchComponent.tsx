@@ -4,7 +4,11 @@ import { useState } from 'react';
 import React from 'react';
 let BACKENDURL="";
 
-const SearchComponent = () => {
+interface SearchComponentProps {
+    onSearch: (data: any) => void;
+}
+
+const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
     
     if(process.env.NODE_ENV === 'development') {
         BACKENDURL='http://localhost:8080';
@@ -33,6 +37,9 @@ const SearchComponent = () => {
             });
             const wordInfo = await response.json();
             console.log(wordInfo);
+            const meaning = wordInfo.meanings[0].definitions[0].definition;
+            console.log("meaning is: " + meaning);
+            onSearch(meaning);
         } catch (error) {
             console.error('Error fetch data: ', error);
         }
