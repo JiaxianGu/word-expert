@@ -7,7 +7,7 @@ let BACKENDURL="";
 const SearchComponent = () => {
     
     if(process.env.NODE_ENV === 'development') {
-        BACKENDURL='localhost://8080';
+        BACKENDURL='http://localhost:8080';
     } else if(process.env.NODE_ENV === 'production') {
         BACKENDURL='https://word-expert-backend.onrender.com';
     }
@@ -23,13 +23,14 @@ const SearchComponent = () => {
             alert("Please enter a value to search");
         }
         try {
-            console.log(process.env.NODE_ENV);
-            console.log(inputValue);
+            const reqBody = JSON.stringify({word: inputValue})
             const response = await fetch(`${BACKENDURL}/word`, {
                 method: 'POST',
-                body: JSON.stringify({"word": inputValue}),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: reqBody,
             });
-            console.log(response);
             const wordInfo = await response.json();
             console.log(wordInfo);
         } catch (error) {
