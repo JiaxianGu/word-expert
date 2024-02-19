@@ -54,6 +54,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
                 placeholder="Enter a word"
             />
             <button onClick={handleButtonClick}>Search</button>
+            <button>Add</button>
         </div>
     )
 }
