@@ -1,17 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Search from './Search';
+import Library from './Library';
+import Login from './Login';
 
-const MainArea = () => {
-  return (
+const MainArea = ({ pageView }) => {
+    const renderElement = (pageView) => {
+        if (pageView === 'search') {
+            return <Search></Search>
+        } else if (pageView === 'login') {
+            return <Login></Login>
+        } else if (pageView === 'library') {
+            return <Library></Library>
+        }
+    }
+  
+    return (
+
     <div className='pt-14'>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
-        <h1 className='text-9xl'>hello</h1>
+        {renderElement(pageView)}
     </div>
   )
 }

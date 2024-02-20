@@ -6,16 +6,23 @@ import MainArea from './MainArea';
 
 
 const Page = () => {
-    const [pageView, setPageView] = useState("search");
+    const [pageView, setPageView] = useState("search"); // search, library, login
     const [isLoggedIg, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState("");
     const [userId, setUserId] = useState();
 
-    
+    const handleSetPageView = (newPageView) => {
+        setPageView(newPageView);
+    }
+
     return (
         <div>
-            <Navbar ></Navbar>
-            <MainArea></MainArea>
+            <Navbar 
+                handleSetPageView={handleSetPageView}
+                ></Navbar>
+            <MainArea 
+                pageView={pageView}
+            ></MainArea>
         </div>
     )
 }
