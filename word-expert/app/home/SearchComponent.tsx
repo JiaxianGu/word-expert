@@ -53,8 +53,8 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
                 onChange={handleInputChange}
                 placeholder="Enter a word"
             />
-            <button onClick={handleButtonClick}>Search</button>
-            <button>Add</button>
+            <button onClick={handleButtonClick} className='bg-slate-300 mx-2'>Search</button>
+            <button className='bg-teal-400 border-t-orange-200 mx-4' >Add</button>
         </div>
     )
 }
