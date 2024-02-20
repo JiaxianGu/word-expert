@@ -5,9 +5,13 @@ import MainArea from './MainArea';
 
 const page = () => {
     const [pageView, setPageView] = useState("search");
+    const [isLoggedIg, setIsLoggedIn] = useState(false);
+    const [userName, setUserName] = useState("");
+    const [userId, setUserId] = useState();
+    
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar ></Navbar>
             <MainArea></MainArea>
         </div>
     )
