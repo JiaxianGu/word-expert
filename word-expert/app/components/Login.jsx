@@ -1,4 +1,6 @@
-import React from 'react'
+"use clien";
+import React, {useState, useEffect} from 'react'
+
 
 const Login = ({handleSetPageView}) => {
     const handleOutsideClick= () => {
@@ -9,7 +11,7 @@ const Login = ({handleSetPageView}) => {
     
 
     return (
-        
+
         <div className="min-h-screen flex items-center justify-center" onClick={handleOutsideClick}>
         <div className="bg-white w-72 h-96 rounded-lg shadow-md flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-2xl w-full font-bold mt-12 mb-12 text-center">Welcome</h2>
