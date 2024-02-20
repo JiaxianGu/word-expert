@@ -45,16 +45,26 @@ const Search = () => {
 
 
   return (
-    <div>
-        <input 
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Enter a word"
-        />
-        <button onClick={handleButtonClick} className='bg-slate-300 mx-2'>Search</button>
-        <button className='bg-teal-400 border-t-orange-200 mx-4' >Add</button>
-        <div>{meaning}</div>
+    <div className="my-16 max-w-lg mx-auto p-4 space-y-4">
+        <div className="flex items-center space-x-2">
+            <input 
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Enter a word"
+                className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+            <button 
+                onClick={handleButtonClick} 
+                className='px-4 py-2 bg-slate-300 rounded-lg shadow hover:bg-slate-400 transition-colors'
+            >Search</button>
+            <button 
+            className='px-4 py-2 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition-colors mx-4'
+            >Add</button>
+        </div>
+        
+        <div className="p-4 border border-gray-300 rounded-lg shadow"
+        >{meaning}</div>
     </div>
   )
 }
