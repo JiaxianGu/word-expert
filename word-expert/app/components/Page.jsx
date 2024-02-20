@@ -22,6 +22,7 @@ const Page = () => {
                 ></Navbar>
             <MainArea 
                 pageView={pageView}
+                handleSetPageView={handleSetPageView}
             ></MainArea>
         </div>
     )
