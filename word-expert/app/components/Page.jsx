@@ -1,14 +1,16 @@
-import React from 'react'
+"use client";
+import React, { useState, useEffect} from 'react'
 import Navbar from './Navbar';
 import MainArea from './MainArea';
 
 const page = () => {
-  return (
-    <div>
-        <Navbar></Navbar>
-        <MainArea></MainArea>
-    </div>
-  )
+    const [pageView, setPageView] = useState("search");
+    return (
+        <div>
+            <Navbar></Navbar>
+            <MainArea></MainArea>
+        </div>
+    )
 }
 
 export default page
