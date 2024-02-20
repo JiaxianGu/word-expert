@@ -21,7 +21,7 @@ const Navbar = () => {
         
         <div className='flex items-center '>
             <div className='mr-4'>user_name</div>
-            <div className='inline-flex items-center justify-center py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700 transition duration-300 cursor-pointer text-lg'>
+            <div className='inline-flex items-center justify-center py-2 px-4 mr-2 bg-green-500 text-white rounded hover:bg-green-700 transition duration-300 cursor-pointer text-lg'>
             Profile
             </div>
         </div>

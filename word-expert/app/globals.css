@@ -17,10 +17,13 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb)); */
   /* padding: 1rem; */
   background-image: url("../public/pexels-codioful-(formerly-gradienta)-7130477.jpg");
   background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 @layer utilities {
