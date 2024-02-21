@@ -8,9 +8,25 @@ const Login = ({ handleSetPageView }) => {
     }
 
     const [windowView, setWindowView] = useState("login"); //entrance, login, signup
+    const [inputUserName, setInputUserName] = useState('');
+    const [inputPassword, setInputPassword] = useState('');
+    const [inputConfirmPassword, setInputConfirmPassword] = useState('');
 
-    const handleClickLogin = () => {
-        setWindowView("login");
+    const handleInputChange = (e, changeType) => {
+        if (changeType === "user_name") setInputUserName(e.target.value);
+        else if (changeType === "password") setInputPassword(e.target.value);
+        else if (changeType === "confirm_password") setInputConfirmPassword(e.target.value);
+    }
+
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        if (inputPassword !== inputConfirmPassword) {
+            alert ("Passwords do not match. Please try again.");
+            setInputConfirmPassword('');
+            setInputPassword('');
+        } else {
+            
+        }
     }
 
     const handleClickSignup = () => {
@@ -27,20 +43,26 @@ const Login = ({ handleSetPageView }) => {
                             type="uername"
                             placeholder="User Name"
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
+                            onChange={(e) => handleInputChange(e, "user_name")}
                         />
                         <input
                             type="password"
                             placeholder="Password"
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
+                            onChange={(e) => handleInputChange(e, "password")}
+                            value={inputPassword}
                         />
                         <input
                             type="password"
                             placeholder="Confirm password"
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
+                            onChange={(e) => handleInputChange(e, "confirm_password")}
+                            value={inputConfirmPassword}
                         />
                         <button
                             type="submit"
                             className="w-2/3 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                            onClick={handleSignUp}
                         >
                             Signup
                         </button>
@@ -73,12 +95,6 @@ const Login = ({ handleSetPageView }) => {
                             <a href="#" onClick={handleClickSignup} className="text-blue-500 hover:text-blue-600 transition-colors"> Signup</a>
                         </p>
                     </form>
-                </>
-            )
-        } else if (windowView === "signup") {
-            return (
-                <>
-                    signup
                 </>
             )
         }
