@@ -25,7 +25,6 @@ const Login = ({ handleSetPageView, handleSetIsLoggedIn, handleSetUserName }) =>
     }
 
     const handleSignUp = async (event) => {
-        console.log("signup");
         event.preventDefault();
         if (inputPassword !== inputConfirmPassword) {
             alert ("Passwords do not match. Please try again.");
@@ -49,6 +48,28 @@ const Login = ({ handleSetPageView, handleSetIsLoggedIn, handleSetUserName }) =>
                 handleSetUserName(inputUserName);
                 handleSetPageView("search");
             }
+        }
+    }
+
+    const handleLogIn = async(event) => {
+        event.preventDefault();
+        const reqBody = JSON.stringify({userName : inputUserName, plainPassword: inputPassword})
+        const response = await fetch(`${BACKENDURL}/login`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',},
+            body: reqBody,
+        });
+        if (response.status === 200) {
+            handleSetIsLoggedIn(true);
+            handleSetUserName(inputUserName);
+            handleSetPageView("search");
+        } else if (response.status === 401) {
+            alert("Password Incorrect");
+            setInputPassword('');
+        } else if (response.stauts === 404) {
+            alert("User not exist");
+            setInputUserName('');
+            setInputPassword('');
         }
     }
 
@@ -115,6 +136,7 @@ const Login = ({ handleSetPageView, handleSetIsLoggedIn, handleSetUserName }) =>
                         <button
                             type="submit"
                             className="w-2/3 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                            onClick={handleLogIn}
                         >
                             Login
                         </button>
