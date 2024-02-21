@@ -6,7 +6,7 @@ import Login from './Login';
 const MainArea = ({ pageView, handleSetPageView, isLoggedIn, userName, handleSetIsLoggedIn, handleSetUserName}) => {
     const renderElement = (pageView) => {
         if (pageView === 'search') {
-            return <Search></Search>
+            return <Search userName={userName}></Search>
         } else if (pageView === 'login') {
             return <Login 
             handleSetPageView={handleSetPageView}
@@ -14,7 +14,7 @@ const MainArea = ({ pageView, handleSetPageView, isLoggedIn, userName, handleSet
             handleSetUserName={handleSetUserName}
             ></Login>
         } else if (pageView === 'library') {
-            return <Library></Library>
+            return <Library userName={userName}></Library>
         }
     }
   

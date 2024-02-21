@@ -66,7 +66,7 @@ const Login = ({ handleSetPageView, handleSetIsLoggedIn, handleSetUserName }) =>
         } else if (response.status === 401) {
             alert("Password Incorrect");
             setInputPassword('');
-        } else if (response.stauts === 404) {
+        } else if (response.status === 404) {
             alert("User not exist");
             setInputUserName('');
             setInputPassword('');

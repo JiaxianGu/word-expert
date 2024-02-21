@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 let BACKENDURL="";
 
-const Search = () => {
+const Search = ({ userName }) => {
 
     if(process.env.NODE_ENV === 'development') {
         BACKENDURL='http://localhost:8080';
@@ -12,6 +12,7 @@ const Search = () => {
     }
 
     const [inputValue, setInputValue] = useState('');
+    
     const [word, setWord] = useState('');
     const [meaning, setMeaning] = useState('');
 
@@ -19,7 +20,7 @@ const Search = () => {
         setInputValue(e.target.value);
     }
 
-    const handleButtonClick = async () => {
+    const handleSearchButtonClick = async () => {
         if (!inputValue) {
             alert("Please enter a value to search");
         }
@@ -43,6 +44,21 @@ const Search = () => {
         }
     }
 
+    const handleAddButtonClick = async () => {
+        try {
+            const reqBody = JSON.stringify({"word": inputValue, "meaning": meaning, "user": userName});
+            const response = await fetch(`${BACKENDURL}/add`, {
+                method: 'POST',
+                headers:{'Content-Type': 'application/json'},
+                body:reqBody,
+            });
+            setInputValue('');
+            setMeaning('');
+        } catch(err) {
+            console.error(err.message);
+        }
+    }
+
 
   return (
     <div className="my-16 max-w-lg mx-auto p-4 space-y-4">
@@ -55,11 +71,12 @@ const Search = () => {
                 className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
             <button 
-                onClick={handleButtonClick} 
+                onClick={handleSearchButtonClick} 
                 className='px-4 py-2 bg-slate-300 rounded-lg shadow hover:bg-slate-400 transition-colors'
             >Search</button>
             <button 
             className='px-4 py-2 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition-colors mx-4'
+            onClick={handleAddButtonClick}
             >Add</button>
         </div>
         

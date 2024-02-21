@@ -53,7 +53,7 @@ const Navbar = ({ handleSetPageView, isLoggedIn, userName, handleSetIsLoggedIn, 
                     className='inline-flex items-center justify-center h-full w-36 bg-gray-300 text-black  text-lg hover:bg-gray-400 transition duration-300 cursor-pointer'
                     onClick={handleMyWordClick}
                 >
-                    My Word
+                    My Words
                 </div>
             </div>
 
