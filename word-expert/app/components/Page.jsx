@@ -7,7 +7,7 @@ import MainArea from './MainArea';
 
 const Page = () => {
     const [pageView, setPageView] = useState("search"); // search, library, login
-    const [isLoggedIg, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState("");
     const [userId, setUserId] = useState();
 
@@ -15,14 +15,31 @@ const Page = () => {
         setPageView(newPageView);
     }
 
+    const handleSetIsLoggedIn = (newIsLoggedIn) => {
+        setIsLoggedIn(newIsLoggedIn);
+    }
+
+    const handleSetUserName = (newUserName) => {
+        setUserName(newUserName);
+    }
+
     return (
         <div>
             <Navbar 
+                pageView={pageView}
                 handleSetPageView={handleSetPageView}
+                isLoggedIn={isLoggedIn}
+                userName={userName}
+                handleSetIsLoggedIn={handleSetIsLoggedIn}
+                handleSetUserName={handleSetUserName}
                 ></Navbar>
             <MainArea 
                 pageView={pageView}
                 handleSetPageView={handleSetPageView}
+                isLoggedIn={isLoggedIn}
+                userName={userName}
+                handleSetIsLoggedIn={handleSetIsLoggedIn}
+                handleSetUserName={handleSetUserName}
             ></MainArea>
         </div>
     )

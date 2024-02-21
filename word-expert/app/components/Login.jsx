@@ -1,8 +1,14 @@
 "use clien";
 import React, { useState, useEffect } from 'react'
+let BACKENDURL="";
 
+const Login = ({ handleSetPageView, handleSetIsLoggedIn, handleSetUserName }) => {
+    if(process.env.NODE_ENV === 'development') {
+        BACKENDURL='http://localhost:8080';
+    } else if(process.env.NODE_ENV === 'production') {
+        BACKENDURL='https://word-expert-backend.onrender.com';
+    }
 
-const Login = ({ handleSetPageView }) => {
     const handleOutsideClick = () => {
         handleSetPageView('search');
     }
@@ -18,14 +24,31 @@ const Login = ({ handleSetPageView }) => {
         else if (changeType === "confirm_password") setInputConfirmPassword(e.target.value);
     }
 
-    const handleSignUp = (event) => {
+    const handleSignUp = async (event) => {
+        console.log("signup");
         event.preventDefault();
         if (inputPassword !== inputConfirmPassword) {
             alert ("Passwords do not match. Please try again.");
             setInputConfirmPassword('');
             setInputPassword('');
         } else {
-            
+            const reqBody = JSON.stringify({userName : inputUserName, plainPassword: inputPassword})
+            const response = await fetch(`${BACKENDURL}/signup`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: reqBody,
+            });
+            if (response.status === 409) {
+                alert("User name already taken. Please choose another one.");
+                setInputUserName('');
+                setInputPassword('');
+                setInputConfirmPassword('');
+            }
+            if (response.status === 200) {
+                handleSetIsLoggedIn(true);
+                handleSetUserName(inputUserName);
+                handleSetPageView("search");
+            }
         }
     }
 
@@ -42,22 +65,23 @@ const Login = ({ handleSetPageView }) => {
                         <input
                             type="uername"
                             placeholder="User Name"
+                            value={inputUserName}
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
                             onChange={(e) => handleInputChange(e, "user_name")}
                         />
                         <input
                             type="password"
                             placeholder="Password"
+                            value={inputPassword}
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
                             onChange={(e) => handleInputChange(e, "password")}
-                            value={inputPassword}
                         />
                         <input
                             type="password"
                             placeholder="Confirm password"
+                            value={inputConfirmPassword}
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
                             onChange={(e) => handleInputChange(e, "confirm_password")}
-                            value={inputConfirmPassword}
                         />
                         <button
                             type="submit"
@@ -77,12 +101,16 @@ const Login = ({ handleSetPageView }) => {
                         <input
                             type="uername"
                             placeholder="User Name"
+                            value={inputUserName}
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
+                            onChange={(e) => handleInputChange(e, "user_name")}
                         />
                         <input
                             type="password"
                             placeholder="Password"
+                            value={inputPassword}
                             className="w-4/5 p-2 mb-8 border border-gray-300 rounded"
+                            onChange={(e) => handleInputChange(e, "password")}
                         />
                         <button
                             type="submit"
