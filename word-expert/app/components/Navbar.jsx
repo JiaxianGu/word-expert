@@ -38,7 +38,7 @@ const Navbar = ({ handleSetPageView }) => {
             <div className='inline-flex items-center justify-center py-2 px-4 mr-2 bg-green-500 text-white rounded hover:bg-green-700 transition duration-300 cursor-pointer text-lg'
             onClick={handleProfileClick}
             >
-            Profile
+            Login
             </div>
         </div>
         
