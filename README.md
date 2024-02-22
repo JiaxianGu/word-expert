@@ -48,7 +48,7 @@ npm install
 npm run dev
 ```
 
-The app should now be running on http://localhost:8080.
+The app should now be running on http://localhost:3000.
 
 
 ## Backend Integration
